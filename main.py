@@ -28,6 +28,9 @@ def get_driver():
 
 def main():
   driver = get_driver()
+  
+  #find element by xpath is not supported and hence here find element has been 
+  #used with "by" and "value" arguments.
   element = driver.find_element(by="xpath", value="/html/body/div[1]/div/h1[1]")
   #to get the actual text in the console, "element.text" is required
   return element.text
