@@ -29,6 +29,13 @@ def get_driver():
   driver.get("http://automated.pythonanywhere.com")
   return driver
 
+# to cleant the texgt and get the value of only the nu,ber in output
+def clean_text(text):
+  """Extract only yhe temperature value from text"""
+  output = float(text.split(": ")[1])
+  return output
+  
+
 def main():
   driver = get_driver()
   #whenever the browser is loaded it wont load immediately the dynamic variables, hence use time.sleep(2)
@@ -36,11 +43,12 @@ def main():
   
   #find element by xpath is not supported and hence here find element has been 
   #used with "by" and "value" arguments. In Google chrome, then select the particular text 
-  #then right click and give inspect. Then select the highlighted code in the developer window again
+  #then right click and give inspect. Then select the highlighted code in the developer 
+  #window again
   # right click then select 'copy full xpath', then paste the copied value in "value"
   element = driver.find_element(by="xpath", value="/html/body/div[1]/div/h1[2]")
   #to get the actual text in the console, "element.text" is required
-  return element.text
+  return clean_text(element.text)
   
 print(main())
 
